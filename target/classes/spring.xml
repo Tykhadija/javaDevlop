@@ -1,0 +1,25 @@
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN"
+        "https://www.springframework.org/dtd/spring-beans-2.0.dtd">
+<beans>
+    <bean id="presentation" class="presentation.ClientPresentation" scope="prototype">
+        <property name="service" ref="service"/>
+    </bean>
+    <bean id="service" class="service.ClientServiceImp" scope="prototype">
+        <property name="dao" ref="dao"/>
+<!--        <constructor-arg ref="dao"/>-->
+    </bean>
+    <bean id="dao" class="dao.ClientDaoImp" scope="prototype">
+    </bean>
+
+    <!--///////////////////// Facture-->
+
+    <bean id="presentationFact" class="presentation.FacturePresentation" scope="prototype">
+        <property name="serviceFact" ref="serviceF"/>
+    </bean>
+    <bean id="serviceF" class="service.FactureServiceImp" scope="prototype">
+        <property name="daoFact" ref="daoF"/>
+        <!--        <constructor-arg ref="dao"/>-->
+    </bean>
+    <bean id="daoF" class="dao.FactureDaoImp" scope="prototype">
+    </bean>
+</beans>
