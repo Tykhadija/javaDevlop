@@ -4,10 +4,9 @@ import lombok.Builder;
 import models.Facture;
 import org.apache.logging.log4j.core.util.JsonUtils;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
+import javax.persistence.*;
 
+@Inheritance
 public class FactureDaoImp implements IFactureDao{
 
     public FactureDaoImp() {

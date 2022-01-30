@@ -1,37 +1,25 @@
-import models.Client;
-import models.Facture;
+import models.*;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import presentation.ClientPresentation;
 import presentation.FacturePresentation;
 
+import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 
 public class APPLICATIONRUNNER {
     public static void main(String[] args) {
-        ApplicationContext context= new ClassPathXmlApplicationContext("spring.xml");
-//        ClientPresentation pres = (ClientPresentation) context.getBean("presentation");
-        FacturePresentation presFact = (FacturePresentation) context.getBean("presentationFact");
 
+        ApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
+        ClientPresentation pres = (ClientPresentation) context.getBean("presentation");
 
+         Client client = new Client("omar");
+         ClientVip client1 = new ClientVip("haffsa","vipp");
+         ClientNormal client2 = new ClientNormal("imane",345);
+        pres.save(client);
+        pres.save(client1);
+        pres.save(client2);
 
-        // Test save use case for three clients
-            presFact.save(new Facture(1L,new Date(),1.9D));
-            presFact.save(new Facture(2L,new Date(),4.66D));
-//            presFact.save(new Client("ali"));
-//            presFact.save(new Client("ahmed"));
-//            presFact.save(new Client("omar"));
-
-        // Test modify use case for client with id==1
-            //presFact.modify(new Facture(1,new Date(),1.5));
-
-        // Test remove use case for client with id==1
-//            pres.removeById(1L);
-
-        // Test find use case for client with id==1
-            //pres.getById(1L);
-
-//        Client client = new Client("Omar");
-//        pres.save(client);
     }
 }

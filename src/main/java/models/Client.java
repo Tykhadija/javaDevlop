@@ -1,34 +1,32 @@
 package models;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
-
+import lombok.Data;
 import javax.persistence.*;
+import java.util.List;
+@Entity
+@Data
 
-@Getter
-@Setter
-@AllArgsConstructor
-@Entity(name = "TClients")
+//@Inheritance(strategy = InheritanceType.JOINED)
 
+//@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+//@DiscriminatorColumn(name="client_type")
+//@DiscriminatorValue("client")
+
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Client {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.TABLE)
     private long id;
+    private String name;
+
     public Client(String name) {
         this.name = name;
     }
-    public Client() {
-    }
-    @Column
-    private String name;
-    @Override
-    public String toString() {
-        return "Client{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                '}';
+
+    public Client(){
+
     }
 }
 

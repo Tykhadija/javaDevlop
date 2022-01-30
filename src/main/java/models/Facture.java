@@ -1,35 +1,36 @@
 package models;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
 
+@Entity
 @Getter
 @Setter
-@AllArgsConstructor
+@ToString
 
-@Entity(name = "TFactures")
 public class Facture {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @Column
-    private java.util.Date date;
-    @Column
-    private double amount;
+    private Double amount;
+    private String description;
 
-    @Override
-    public String toString() {
-        return "Facture{" +
-                "id=" + id +
-                ", date ='" + date + '\'' +
-                ", amount ='"+ amount + '\''+
-                '}';
+    @ManyToOne
+    @JoinColumn(name ="client_id")
+    private Client client;
+    public Facture() {}
+
+    public Double getAmount(){
+        return amount;
     }
 
-
-
+    public Facture(Double amount,String description,Client client){
+        this.amount=amount;
+        this.description=description;
+        this.client=client;
+    }
 
 }
